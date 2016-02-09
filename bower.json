@@ -1,0 +1,33 @@
+{
+  "name": "Videology",
+  "version": "1.0.0",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "**/.*",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.3",
+    "normalize.css": "latest",
+    "modernizr": "latest",
+    "angular": "~1.5.0",
+    "d3": "^3.5.14",
+    "bootstrap-sass": "^3.3.6"
+  },
+  "authors": [
+    "S.Severin"
+  ],
+  "description": "",
+  "main": "index.html",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "videology"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true
+}

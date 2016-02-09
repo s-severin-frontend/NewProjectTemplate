@@ -1,0 +1,176 @@
+
+// TABLE OF CONTENTS
+// -----------------------------------------------------------------------------
+// 01. Default Text/Font settings and mixins
+// 02. Layout mixins
+// 03. Additional mixins:
+//    03.01. Transition mixin
+//    03.02. User-select mixin
+//    03.03. Transform mixin
+//    03.04. Gradient mixin
+//    03.05. Retina mixin
+//    03.06. Placeholder mixin
+// 04. Breakpoints for Responsive design
+// -----------------------------------------------------------------------------
+
+// 01. Default Font settings and mixins
+//    Set fon-size for variable $default-fz and line-height for variable $default-lh
+$default-fz: 14;
+$default-lh: 1.2;
+
+@mixin font($size: $default-fz, $line: $size * $default-lh) {
+  font-size: ($size/$default-fz) + em;
+  line-height: ($line/$size);
+}
+
+@mixin text-overflow($value) {
+  overflow: hidden;
+  text-overflow: $value;
+  -o-text-overflow: $value;
+  white-space: nowrap;
+}
+
+@mixin clear-fix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+@mixin word-break {
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word; // Non standard for webkit
+}
+
+//  Make sure that you include in HTML the URLs for the referenced CSS FontAwesome
+$f-icons: 'FontAwesome';
+
+@mixin icon {
+  font-family: $f-icons;
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// 02. Layout mixins
+@mixin box-sizing {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin column($widthAll, $col) {
+  @include clear-fix;
+  margin-right: -10px;
+  margin-left: -10px;
+  $colwidth: $widthAll / $col;
+
+  & > .column {
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: $colwidth;
+  }
+}
+
+@mixin img-responsive {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+// 03. Additional mixins
+@mixin transition($transition) {
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -ms-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+}
+
+@mixin user-select($value) {
+  -webkit-user-select: $value;
+  -khtml-user-select: $value;
+  -moz-user-select: $value;
+  -o-user-select: $value;
+  user-select: $value;
+}
+
+@mixin transform($value) {
+  -webkit-transform: $value;
+  -ms-transform: $value;
+  transform: $value;
+}
+
+$between-default: 0;
+$gradientStart: top;
+$gradientEnd: bottom;
+@mixin gradient($from, $to, $between: $between-default, $start: $gradientStart, $end: $gradientEnd) {
+  background: $from;
+  @if $between !=0{
+    background: -webkit-linear-gradient($start, $from, $between, $to);
+    background: -moz-linear-gradient($start, $from, $between, $to);
+    background: -o-linear-gradient($start, $from, $between, $to);
+    background: -ms-linear-gradient($start, $from, $between, $to);
+    background: linear-gradient(to $end, $from, $between, $to);
+  } @else {
+    background: -webkit-linear-gradient($start, $from, $to);
+    background: -moz-linear-gradient($start, $from, $to);
+    background: -o-linear-gradient($start, $from, $to);
+    background: -ms-linear-gradient($start, $from, $to);
+    background: linear-gradient(to $end, $from, $to);
+  }
+}
+
+
+@mixin img-retina($file-1x, $file-2x, $width-1x, $height-1x) {
+  background-image: url("#{$file-1x}");
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+    background-image: url("#{$file-2x}");
+    background-size: $width-1x $height-1x;
+  }
+}
+
+@mixin placeholder($color, $size, $line, $family, $height) {
+  input,
+  textarea {
+    &::-webkit-input-placeholder {
+      @include font($size, $line);
+      color: $color;
+      font-family: $family;
+    }
+    &::-moz-placeholder {
+      @include font($size, $line);
+      color: $color;
+      font-family: $family;
+      line-height: $height;
+    }
+    &:-ms-input-placeholder {
+      @include font($size, $line);
+      color: $color;
+      font-family: $family;
+    }
+  }
+}
+
+// 04. Breakpoints for Responsive design
+$bk-xlg: 1024px;
+$bk-lg: 960px;
+$bk-md: 768px;
+$bk-sm: 480px;
+$bk-xs: 320px;

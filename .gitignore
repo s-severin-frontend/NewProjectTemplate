@@ -1,0 +1,15 @@
+#phpstorm project files
+.idea
+
+# sass cache files
+*.sass-cache
+
+# grunt build files
+.tmp
+/dist/
+/app/lib/
+/app/css/
+/node_modules/
+
+# bower install files
+/bower_components/

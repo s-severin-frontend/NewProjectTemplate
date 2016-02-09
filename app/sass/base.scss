@@ -1,0 +1,13 @@
+@import "mixins.scss";
+
+body {
+  font-size: $default-fz + px;
+  line-height: $default-lh;
+}
+
+html {
+  background: #fff;
+  color: #111;
+  text-align: center;
+  padding-top: 150px;
+}

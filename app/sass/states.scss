@@ -1,0 +1,58 @@
+@import "mixins.scss";
+
+// The .clearfix class can be added to any element to ensure that it always fully contains its floated children.
+.clearfix {
+  @include clear-fix;
+}
+
+// The .is-hidden class can be added to any element that you want to hide visually and from screen readers
+.is-hidden {
+  display: none !important;
+}
+
+// The .is-visuallyhidden class can be added to any element that you want to hide visually, while still have its content accessible to screen readers.
+.is-visuallyhidden {
+  visibility: hidden;
+}
+
+//As opposed to the .is-visuallyhidde class
+.is-visually-visible {
+  visibility: visible;
+}
+
+// Responsive classes / As opposed to the .is-hidden class
+.is-visible-lg,
+.is-visible-md,
+.is-visible-sm {
+  display: none;
+}
+
+.is-visible-xlg {
+  @media screen and (min-width: $bk-lg) {
+    display: block;
+  }
+}
+
+.is-visible-lg {
+  @media screen and (min-width: $bk-lg) and (max-width: $bk-xlg - 1) {
+    display: block;
+  }
+}
+
+.is-visible-md {
+  @media screen and (min-width: $bk-md) and (max-width: $bk-lg - 1) {
+    display: block;
+  }
+}
+
+.is-visible-sm {
+  @media screen and (min-width: $bk-sm) and (max-width: $bk-md - 1) {
+    display: block;
+  }
+}
+
+.is-visible-xs {
+  @media screen and (min-width: $bk-xs) and (max-width: $bk-sm - 1) {
+    display: block;
+  }
+}
